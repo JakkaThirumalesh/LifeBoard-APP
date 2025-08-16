@@ -1,6 +1,6 @@
 {
-  "name": "PWA Productivity App",
-  "short_name": "Productivity",
+  "name": "PWA LifeBoard App",
+  "short_name": "LifeBoard",
   "start_url": "/index.html",
   "display": "standalone",
   "background_color": "#0b1220",
