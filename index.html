@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PWA Productivity App</title>
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0f172a" />
+  <link rel="icon" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="app-header">
+    <h1>LifeBoard</h1>
+    <div class="header-actions">
+      <button id="installBtn" class="btn secundary" hidden>📥 Install</button>
+      <button id="themeToggle" class="btn secundary" title="Toggle theme">🌓</button>
+    </div>
+  </header>
+
+  <main id="views">
+    <!-- To-Do -->
+    <section id="view-todo" class="view">
+      <h2>📝 To-Do</h2>
+      <form id="todoForm" class="row gap">
+        <input id="todoText" class="input flex" placeholder="Task…" />
+        <select id="todoPriority" class="input">
+          <option value="Low">Low</option>
+          <option value="Medium" selected>Medium</option>
+          <option value="High">High</option>
+        </select>
+      </form>
+      <div class="row gap">
+        <input id="todoDueDate" type="date" class="input" />
+        <input id="todoDueTime" type="time" class="input" />
+        <button id="addTodoBtn" class="btn primary">Add</button>
+      </div>
+
+      <ul id="todoList" class="list dnd" aria-label="Todo list"></ul>
+    </section>
+
+    <!-- Notes -->
+    <section id="view-notes" class="view hidden">
+      <h2>📒 Notes</h2>
+      <div class="row gap">
+        <textarea id="noteText" class="input flex" rows="3" placeholder="Write a note…"></textarea>
+        <button id="addNoteBtn" class="btn primary">Save</button>
+      </div>
+      <ul id="notesList" class="list dnd" aria-label="Notes"></ul>
+    </section>
+
+    <!-- Bookmarks -->
+    <section id="view-bookmarks" class="view hidden">
+      <h2>🔖 Bookmarks</h2>
+      <div class="row gap wrap">
+        <input id="bmUrl" class="input flex" placeholder="https://example.com" />
+        <input id="bmDesc" class="input flex" placeholder="Description (optional)" />
+        <button id="addBmBtn" class="btn primary">Add</button>
+      </div>
+      <ul id="bmList" class="list dnd cards" aria-label="Bookmarks"></ul>
+    </section>
+
+    <!-- Alarms -->
+    <section id="view-alarms" class="view hidden">
+      <h2>⏰ Alarms</h2>
+      <div class="card">
+        <div class="row gap wrap">
+          <input id="alarmTime" type="time" class="input" />
+          <input id="alarmLabel" class="input flex" placeholder="Label (optional)" />
+          <select id="alarmRepeat" class="input">
+            <option value="once">Once</option>
+            <option value="daily">Daily</option>
+            <option value="weekdays">Weekdays</option>
+            <option value="weekends">Weekends</option>
+          </select>
+          <input id="alarmSound" type="file" accept="audio/*" class="input file" />
+          <button id="addAlarmBtn" class="btn primary">Add Alarm</button>
+        </div>
+        <small>Tip: choose a sound file to save as the ringtone for this alarm.</small>
+      </div>
+
+      <ul id="alarmList" class="list cards" aria-label="Alarms"></ul>
+    </section>
+  </main>
+
+  <!-- Bottom Nav -->
+  <nav class="bottom-nav">
+    <button data-tab="todo" class="active">📝<span>To-Do</span></button>
+    <button data-tab="notes">📒<span>Notes</span></button>
+    <button data-tab="bookmarks">🔖<span>Bookmarks</span></button>
+    <button data-tab="alarms">⏰<span>Alarms</span></button>
+  </nav>
+
+  <!-- Alarm Popup -->
+  <dialog id="alarmPopup" class="popup">
+    <h3>⏰ Alarm</h3>
+    <p id="alarmPopupText"></p>
+    <div class="row gap">
+      <button id="stopAlarmBtn" class="btn danger">Stop</button>
+      <button id="snoozeAlarmBtn" class="btn">Snooze 5m</button>
+    </div>
+  </dialog>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
